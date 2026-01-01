@@ -13,13 +13,14 @@ APP_CONFIG = {
     "genres": ["和食", "洋食", "中華", "イタリアン", "フレンチ", "スペイン", "ラーメン", "カフェ", "焼肉", "居酒屋", "その他"],
     "colors": ["Black", "Gold", "Silver", "Bronze", "Normal"],
     "criteria": [
-        {"id": "total", "label": "満足度", "type": "slider", "min": 1, "max": 5},
-        {"id": "taste", "label": "料理　", "type": "slider", "min": 1, "max": 5},
-        {"id": "cost_performance", "label": "コスパ", "type": "slider", "min": 1, "max": 5},
-        {"id": "location", "label": "場所　", "type": "text"},
-        {"id": "atmosphere", "label": "雰囲気", "type": "selectbox", "options": ["静か", "賑やか", "個室あり", "デート向き", "入りやすい"]},
-        {"id": "parking", "label": "駐車場", "type": "selectbox", "options": ["あり","なし"]},
-        {"id": "memo", "label": "メモ　", "type": "text_area"},
+        {"id": "total", "label": "満足度　", "type": "slider", "min": 1, "max": 5},
+        {"id": "taste", "label": "料理　　", "type": "slider", "min": 1, "max": 5},
+        {"id": "service", "label": "サービス", "type": "slider", "min": 1, "max": 5},
+        {"id": "cost_performance", "label": "コスパ　", "type": "slider", "min": 1, "max": 5},
+        {"id": "location", "label": "場所　　", "type": "text"},
+        {"id": "atmosphere", "label": "雰囲気　", "type": "selectbox", "options": ["静か", "賑やか", "個室あり", "デート向き", "入りやすい"]},
+        {"id": "parking", "label": "駐車場　", "type": "selectbox", "options": ["あり","なし"]},
+        {"id": "memo", "label": "メモ　　", "type": "text_area"},
     ]
 }
 
@@ -197,30 +198,50 @@ def main():
             st.info("👈 左のサイドバーから、最初のお店を登録してみましょう！")
         else:
             st.warning("条件に一致するお店が見つかりませんでした。")
+
     else:
         for entry in display_data:
             color_class = f"card-{entry.get('color', 'Black')}"
-            criteria_html = ""
+            safe_id = f"card_{str(entry['id']).replace('.', '').replace('_', '')}"
+            
+            # 表面の星評価（HTMLタグをクラス化）
+            front_stars = ""
             for item in APP_CONFIG["criteria"]:
-                val = entry.get(item["id"], "")
                 if item["type"] == "slider":
-                    num_val = int(val) if val and str(val).isdigit() else 1
-                    stars = "★" * num_val + "☆" * (item.get("max", 5) - num_val)
-                    criteria_html += f"<div><strong>{item['label']}：</strong> <span style='color:#f1c40f'>{stars}</span></div>"
-                else:
-                    disp_val = val if val else "-"
-                    criteria_html += f"<div><strong>{item['label']}：</strong> {disp_val}</div>"
+                    val = entry.get(item["id"], 1)
+                    num_val = int(val) if str(val).isdigit() else 1
+                    stars = "★" * num_val + "☆" * (5 - num_val)
+                    front_stars += f"<div class='rating-item'><strong>{item['label']}：</strong><span class='star-rating'>{stars}</span></div>"
+            
+            # 裏面の詳細（HTMLタグをクラス化）
+            back_info = ""
+            for item in APP_CONFIG["criteria"]:
+                if item["type"] != "slider":
+                    val = entry.get(item["id"], "-")
+                    if item["id"] == "memo":
+                        back_info += f"<div class='memo-area'>{val}</div>"
+                    else:
+                        back_info += f"<div class='detail-area'><strong>{item['label']}：</strong> {val}</div>"
 
+            # HTML構造（デザインはすべてクラス経由で適用）
             st.markdown(f"""
-            <div class="card {color_class}">
-                <a href="?confirm_delete={entry['id']}" target="_self" class="delete-btn" title="削除">✕</a>
-                <div class="number">No.{entry.get('order', '-')}</div>
-                <h3>{entry['name']} </h3>
-                <div class="card-meta">{entry['genre']}</div>
-                <div class="card-meta">訪問日：{entry['date']}</div>
-                <a href="{entry['url']}" target="_blank" class="url-button">お店のサイトを開く</a>
-                <hr style="margin: 10px 0; border:none; border-top:1px dashed rgba(255,255,255,0.3);">
-                {criteria_html}
+            <div class="flip-card">
+                <input type="checkbox" id="{safe_id}" class="flip-checkbox">
+                <label for="{safe_id}" class="flip-card-inner">
+                    <div class="flip-card-front card {color_class}">
+                        <a href="?confirm_delete={entry['id']}" target="_self" class="delete-btn">✕</a>
+                        <div class="number-tag">No.{entry.get('order', '-')}</div>
+                        <h3>{entry['name']}</h3>
+                        <div class="card-subtitle">{entry['genre']}</div>
+                        <div class="card-subtitle">訪問日：{entry['date']}</div>
+                        <a href="{entry['url']}" target="_blank" class="url-button">Google Map</a>
+                        <div class="rating-item-box">{front_stars}</div>
+                    </div>
+                    <div class="flip-card-back card {color_class}">
+                        <h3>{entry['name']}</h3>
+                        {back_info}
+                    </div>
+                </label>
             </div>
             """, unsafe_allow_html=True)
 

@@ -1,190 +1,188 @@
-/* style.css */
-
 /* アプリ全体の背景 */
 .stApp {
-  background-color: #1e1e1e; /* 少し明るめの黒 */
+  background-color: #1e1e1e;
   color: #f0f2f6;
 }
 
-/* ====================================
-   カードの共通設定
-   ==================================== */
+/* 3D Flip カードの土台 */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 300px;
+  perspective: 1000px;
+  margin-bottom: 25px;
+}
+
+/* 回転制御（チェックボックス） */
+.flip-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* カードの中身（label） */
+.flip-card-inner {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flip-checkbox:checked + .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* 表面・裏面の共通設定 */
 .card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: 15px;
   padding: 25px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.2s; /* ホバー時の動き用 */
+  box-sizing: border-box;
 }
 
-/* カード内のテキスト共通 */
-.card h3 {
-  margin-top: 0;
-  font-weight: bold;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* 薄い線 */
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-}
-
-.card-meta {
-  font-size: 0.85em;
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  background-color: rgba(0, 0, 0, 0.2); /* 文字背景を薄く暗く */
-}
-.card div {
-  margin-bottom: 5px;
-  font-size: 1em;
+.flip-card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ====================================
-   色ごとのデザイン定義
+   移管されたデザイン要素（CSSで管理）
    ==================================== */
 
-/* 黒（Black）: クールなダーク系 */
+/* タイトルとメタ情報 */
+.card h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.card-subtitle {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85em;
+  margin: 2px 6px 2px 0;
+}
+
+/* ★評価の項目 */
+.rating-item-box {
+  margin-top: 10px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.rating-item {
+  font-size: 1em;
+  margin: auto 0;
+}
+
+/* 星評価の色 */
+.star-rating {
+  color: #f1c40f;
+  font-weight: bold;
+}
+
+/* 区切り線 */
+.card-divider {
+  margin: 6px 0;
+  border: none;
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* フッターのガイドテキスト */
+.card-footer-guide {
+  font-size: 0.75em;
+  opacity: 0.5;
+  margin-top: auto; /* 下端に配置 */
+  text-align: center;
+}
+
+/* メモ関連 */
+.detail-area {
+  margin: 4px 0;
+  font-size: 0.9em;
+}
+
+.memo-area {
+  overflow-y: auto;
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  white-space: pre-wrap;
+  margin-top: 6px;
+}
+
+/* 色のバリエーション */
 .card-Black {
   background: linear-gradient(135deg, #2c3e50, #000000);
   color: white;
-  border: 1px solid #444;
 }
-
-/* ノーマル（Normal）: 落ち着いたモノトーン */
 .card-Normal {
   background-color: #1e1e1e;
-  /* background: linear-gradient(135deg, #eeeeee, #34495e); */
   color: white;
 }
-
-/* 銀（Silver）: 明るいので文字は黒っぽく */
 .card-Silver {
   background: linear-gradient(135deg, #bdc3c7, #2c3e50);
-  color: white; /* 暗め銀なので白文字でOK */
-  border: 1px solid #999;
+  color: white;
 }
-
-/* 金（Gold）: ゴージャス */
 .card-Gold {
   background: linear-gradient(135deg, #f1c043, #725407);
   color: white;
-  /* color: #2c3e50; 背景が明るいので文字は濃い色 */
-  text-shadow: none;
 }
-.card-Gold h3 {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-} /* 金の時は線も黒く */
-
-/* 銅（Bronze）: シブい茶色系 */
 .card-Bronze {
   background: linear-gradient(135deg, #c38542, #5a4024);
   color: white;
 }
 
-/* ====================================
-   削除ボタンの配置設定
-   ==================================== */
-
-/* カード自体を「基準点」にする */
-.card {
-  position: relative; /* これがないとボタンが変な場所に飛びます */
-}
-
-/* 削除ボタン（見た目はボタン、中身はリンク） */
+/* ボタン類 */
 .delete-btn {
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: rgba(0, 0, 0, 0.3); /* 半透明の黒 */
-  color: white;
-  text-decoration: none; /* 下線を消す */
+  background: rgba(0, 0, 0, 0.3);
+  color: white !important;
   width: 30px;
   height: 30px;
-  border-radius: 50%; /* 丸くする */
+  border-radius: 50%;
   text-align: center;
-  line-height: 30px; /* 文字を上下中央に */
-  font-size: 14px;
-  transition: background-color 0.2s;
-  z-index: 10;
+  line-height: 30px;
+  text-decoration: none;
+  z-index: 100;
 }
 
-.delete-btn:hover {
-  background-color: #990000; /* ホバー時は赤く */
-  color: white;
-}
-
-/* ====================================
-   削除確認エリアのデザイン
-   ==================================== */
-
-/* 1. 警告ボックス (st.warning) の色をダークレッドに変更 */
-.stAlert {
-  background-color: #4a1c1c !important; /* 暗い赤 */
-  color: #ffcccc !important; /* 薄いピンクの文字 */
-  border-radius: 8px;
-}
-/* アイコンの色も変更 */
-.stAlert [data-testid="stMarkdownContainer"] {
-  font-weight: bold;
-}
-
-/* 2. 「削除」ボタン (type="primary") を赤くする */
-/* button[kind="primary"] で type="primary" のボタンだけを狙い撃ちします */
-button[kind="primary"] {
+.url-button {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
   color: white !important;
-  background-color: #e74c3c !important;
-}
-button[kind="primary"]:hover {
-  background-color: #ff0000 !important; /* マウスを乗せると真っ赤に */
-}
-
-/* 3. 「キャンセル」ボタン (通常のボタン) を目立たないグレーに */
-/* 警告エリアの近くにあるボタンだけを変えたいところですが、
-   Streamlitの仕様上難しいので、全体のセカンダリボタンをダークテーマに合わせます */
-button[kind="secondary"] {
-  color: white !important;
-  /* border: 1px solid #555555 !important; */
-}
-button[kind="secondary"]:hover {
-  background-color: #555555 !important;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85em;
+  margin: 2px 6px 2px 0;
 }
 
-/* ====================================
-   カードの順番
-   ==================================== */
-
-.number {
+.number-tag {
   position: absolute;
   top: 18px;
-  right: 50px;
-  width: 80px;
-  height: 30px;
+  right: 55px;
   opacity: 0.5;
-  text-align: right;
-}
-
-/* ====================================
-   URL
-   ==================================== */
-
-/* URLボタン本体 */
-.url-button {
-  font-size: 0.85em;
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white !important; /* Streamlitのデフォルトリンク色を上書き */
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  text-decoration: none;
   font-size: 0.9em;
-  transition: background-color 0.2s; /* ホバー時の変化を滑らかに */
-}
-
-/* ホバー時の挙動（マウスを乗せた時に少し明るくする） */
-.url-button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  color: white !important;
 }
