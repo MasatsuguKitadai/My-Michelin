@@ -32,7 +32,6 @@ def load_data():
     with open(APP_CONFIG["save_file"], "r", encoding="utf-8") as f:
         data = json.load(f)
         
-    # データに 'order' キーがない場合、自動的に付番する
     needs_save = False
     for i, item in enumerate(data):
         if "order" not in item:
@@ -55,7 +54,6 @@ def save_data(data):
 def main():
     st.set_page_config(page_title=APP_CONFIG["title"], layout="wide")
     
-    # CSS読み込み
     def local_css(file_name):
         with open(file_name) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -67,9 +65,7 @@ def main():
 
     data = load_data()
 
-    # ---------------------------------------
-    # 削除確認・実行エリア
-    # ---------------------------------------
+    # 削除確認エリア（省略なし）
     query_params = st.query_params
     if "confirm_delete" in query_params:
         target_id = query_params["confirm_delete"]
@@ -78,7 +74,7 @@ def main():
         if target_entry:
             with st.container():
                 st.warning(f"⚠️ **削除確認**： 本当に 「{target_entry['name']}」 のカードを削除しますか？")
-                col1, col2, col3 = st.columns([2, 2, 5]) 
+                col1, col2, _ = st.columns([2, 2, 5]) 
                 with col1:
                     if st.button("削除する", type="primary", use_container_width=True):
                         new_data = [d for d in data if d['id'] != target_id]
@@ -92,9 +88,7 @@ def main():
                         st.rerun()
             st.divider()
 
-    # ---------------------------------------
-    # サイドバー：新規登録フォーム
-    # ---------------------------------------
+    # サイドバー（省略なし）
     with st.sidebar:
         st.header("お店を登録")
         with st.form("entry_form", clear_on_submit=True):
@@ -113,7 +107,7 @@ def main():
                 elif item["type"] == "text_area":
                     inputs[item["id"]] = st.text_area(item["label"])
                 elif item["type"] == "text":
-                    inputs[item["id"]] = st.text_input(item["label"], placeholder=item.get("placeholder", ""))
+                    inputs[item["id"]] = st.text_input(item["label"])
 
             submitted = st.form_submit_button("登録")
             
@@ -135,9 +129,9 @@ def main():
                 st.rerun()
 
     # ---------------------------------------
-    # データ管理エリア（並べ替え機能付き）
+    # データ管理エリア（★ここを修正）
     # ---------------------------------------
-    with st.expander("データ一覧・編集・並べ替え", expanded=False):
+    with st.expander("データ管理（編集・並べ替え・バックアップ）", expanded=False):
         if data:
             st.info("💡 `order` を変更して「保存」すると並び順が変わります。")
             df = pd.DataFrame(data)
@@ -155,48 +149,49 @@ def main():
                 column_order=["order", "name", "genre", "color", "date", "url"] + [c["id"] for c in APP_CONFIG["criteria"]]
             )
             
-            if st.button("変更を保存"):
-                updated_data = json.loads(edited_df.to_json(orient="records"))
-                save_data(updated_data)
-                st.success("保存しました。")
-                st.rerun()
+            col_save, col_backup = st.columns([1, 1])
+            with col_save:
+                if st.button("変更を保存", use_container_width=True):
+                    updated_data = json.loads(edited_df.to_json(orient="records"))
+                    save_data(updated_data)
+                    st.success("保存しました。")
+                    st.rerun()
+            
+            # --- バックアップダウンロード機能 ---
+            with col_backup:
+                # JSONデータを文字列に変換
+                json_string = json.dumps(data, ensure_ascii=False, indent=4)
+                # ダウンロードボタン
+                st.download_button(
+                    label="JSON形式でバックアップ",
+                    data=json_string,
+                    file_name=f"gourmet_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
+                    mime="application/json",
+                    use_container_width=True,
+                )
 
-    # ---------------------------------------
-    # フィルター（絞り込み）エリア
-    # ---------------------------------------
+    # フィルターエリア（省略なし）
     st.subheader("検索・絞り込み")
-    
     fil_col1, fil_col2, fil_col3 = st.columns([1, 1, 1])
-    
     with fil_col1:
         search_query = st.text_input("店名で検索", placeholder="店名を入力...")
-
     with fil_col2:
         filter_genres = st.multiselect("ジャンルで絞り込み", options=APP_CONFIG["genres"])
-    
     with fil_col3:
         filter_colors = st.multiselect("カードの色で絞り込み", options=APP_CONFIG["colors"])
 
-    # ---------------------------------------
-    # フィルタリング ロジック
-    # ---------------------------------------
     display_data = data 
-
     if filter_genres:
         display_data = [d for d in display_data if d.get("genre") in filter_genres]
-
     if filter_colors:
         display_data = [d for d in display_data if d.get("color") in filter_colors]
-
     if search_query:
         display_data = [d for d in display_data if search_query.lower() in d.get("name", "").lower()]
 
     st.markdown(f"**表示中: {len(display_data)} 件** / 全 {len(data)} 件")
     st.divider()
 
-    # ---------------------------------------
-    # メインエリア：図鑑表示
-    # ---------------------------------------
+    # メイン表示（省略なし）
     if not display_data:
         if not data:
             st.info("👈 左のサイドバーから、最初のお店を登録してみましょう！")
@@ -205,22 +200,14 @@ def main():
     else:
         for entry in display_data:
             color_class = f"card-{entry.get('color', 'Black')}"
-            
             criteria_html = ""
             for item in APP_CONFIG["criteria"]:
-                # データがない場合の安全策
                 val = entry.get(item["id"], "")
-                
-                # スライダー表示
                 if item["type"] == "slider":
-                    # 値がない場合は1とする
                     num_val = int(val) if val and str(val).isdigit() else 1
                     stars = "★" * num_val + "☆" * (item.get("max", 5) - num_val)
                     criteria_html += f"<div><strong>{item['label']}：</strong> <span style='color:#f1c40f'>{stars}</span></div>"
-                
-                # その他のテキスト項目
                 else:
-                    # 空の場合は "-" を表示
                     disp_val = val if val else "-"
                     criteria_html += f"<div><strong>{item['label']}：</strong> {disp_val}</div>"
 
