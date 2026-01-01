@@ -157,10 +157,11 @@ button[kind="secondary"]:hover {
 .number {
   position: absolute;
   top: 18px;
-  right: 30px;
-  width: 60px;
+  right: 50px;
+  width: 80px;
   height: 30px;
   opacity: 0.5;
+  text-align: right;
 }
 
 /* ====================================
