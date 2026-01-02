@@ -65,7 +65,7 @@ def main():
 
     st.title(f"{APP_CONFIG['title']}")
 
-    with st.expander("カードの色・★評価・￥評価 の基準について", expanded=False):
+    with st.expander("ランク・評価の基準について", expanded=False):
             # カードランクの説明
             st.markdown("""
             #### カードの色（ランク）
