@@ -177,10 +177,10 @@ def main():
     with fil_col1:
         search_query = st.text_input("キーワード検索", placeholder="店名、場所 など")
     with fil_col2:
-        filter_genres = st.multiselect("ジャンルで絞り込み", options=APP_CONFIG["genres"])
-    with fil_col3:
         filter_colors = st.multiselect("カードの色で絞り込み", options=APP_CONFIG["colors"])
-
+    with fil_col3:
+        filter_genres = st.multiselect("ジャンルで絞り込み", options=APP_CONFIG["genres"])
+    
     display_data = data 
     if filter_genres:
         display_data = [d for d in display_data if d.get("genre") in filter_genres]
