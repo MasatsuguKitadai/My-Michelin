@@ -17,7 +17,7 @@ APP_CONFIG = {
         {"id": "taste", "label": "料理　　", "type": "slider", "min": 1, "max": 5},
         {"id": "service", "label": "サービス", "type": "slider", "min": 1, "max": 5},
         {"id": "specialty", "label": "特別感　", "type": "slider", "min": 1, "max": 5},
-        {"id": "cost_performance", "label": "コスパ　", "type": "slider", "min": 1, "max": 5},
+        {"id": "cost_performance", "label": "金額　　", "type": "slider", "min": 1, "max": 5},
         {"id": "location", "label": "場所　　", "type": "text"},
         {"id": "atmosphere", "label": "雰囲気　", "type": "selectbox", "options": ["静か", "賑やか", "個室あり", "デート向き", "入りやすい"]},
         {"id": "parking", "label": "駐車場　", "type": "selectbox", "options": ["あり","なし"]},
