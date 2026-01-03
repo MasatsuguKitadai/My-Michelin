@@ -5,6 +5,39 @@ import os
 from datetime import datetime
 
 # ==========================================
+# 0. 認証機能（追加）
+# ==========================================
+def check_password():
+    """パスワード認証を行い、認証成功ならTrueを返す"""
+    # セッションステートに認証状態がない場合は初期化
+    if "password_correct" not in st.session_state:
+        st.session_state.password_correct = False
+
+    # すでに認証済みなら即座にTrueを返す
+    if st.session_state.password_correct:
+        return True
+
+    # --- ログイン画面の表示 ---
+    st.set_page_config(page_title="ログイン", layout="centered")
+    st.title("🔒 ログイン")
+    
+    # パスワード入力フォーム
+    password_input = st.text_input("パスワードを入力してください", type="password")
+    
+    if st.button("ログイン", type="primary"):
+        # 設定したいパスワード（ここでは "admin" としていますが、後述の方法で安全に管理できます）
+        # st.secrets を使うとより安全ですが、まずは簡易的に変数で指定します
+        CORRECT_PASSWORD = st.secrets["PASSWORD"]
+
+        if password_input == CORRECT_PASSWORD:
+            st.session_state.password_correct = True
+            st.rerun()  # 画面を再読み込みしてメインアプリを表示
+        else:
+            st.error("パスワードが違います")
+            
+    return False
+
+# ==========================================
 # 1. 設定エリア
 # ==========================================
 APP_CONFIG = {
@@ -54,6 +87,14 @@ def save_data(data):
 # 3. アプリのメイン処理
 # ==========================================
 def main():
+    # ★追加：パスワードチェック
+    # 認証が通っていない場合は、ここで処理を終了（return）させて画面を描画させない
+    if not check_password():
+        return
+
+    # ★移動：set_page_config は check_password 内で呼ばれる場合と競合しないよう注意が必要ですが、
+    # Streamlitの仕様上、最初に呼ばれたものが有効になります。
+    # ログイン後はここで再設定されます。
     st.set_page_config(page_title=APP_CONFIG["title"], layout="wide")
     
     def local_css(file_name):
