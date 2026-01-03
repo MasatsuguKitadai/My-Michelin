@@ -217,8 +217,10 @@ def main():
     # ---------------------------------------
     # データ管理エリア（★ここを修正）
     # ---------------------------------------
-    with st.expander("データ管理（編集・並べ替え）", expanded=False):
+    with st.expander("データ管理（編集・復元）", expanded=False):
         if data:
+            st.markdown("### データの編集")
+
             st.info("💡 `order` を変更して「保存」すると並び順が変わります。")
             df = pd.DataFrame(data)
             
@@ -267,6 +269,19 @@ def main():
                     mime="application/json",
                     use_container_width=True,
                 )
+
+            # ★追加：データ復元機能
+            st.markdown("### データの復元")
+            uploaded_file = st.file_uploader("バックアップファイル(.json)をアップロードして復元", type=["json"])
+            if uploaded_file is not None:
+                try:
+                    restored_data = json.load(uploaded_file)
+                    if st.button("このデータで上書きする", type="primary"):
+                        save_data(restored_data)
+                        st.success("データを復元しました！")
+                        st.rerun()
+                except Exception as e:
+                    st.error("ファイルの読み込みに失敗しました。")
 
     # フィルターエリア（省略なし）
     st.subheader("検索・絞り込み")
