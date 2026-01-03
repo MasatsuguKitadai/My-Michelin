@@ -221,17 +221,29 @@ def main():
         if data:
             st.info("💡 `order` を変更して「保存」すると並び順が変わります。")
             df = pd.DataFrame(data)
+            
+            # 編集用設定を作成
+            my_column_config = {
+                "order": st.column_config.NumberColumn("順序", step=1, required=True),
+                "date": st.column_config.TextColumn("訪問日", required=True),
+                "color": st.column_config.SelectboxColumn("カード色", options=APP_CONFIG["colors"], required=True),
+                "genre": st.column_config.SelectboxColumn("ジャンル", options=APP_CONFIG["genres"], required=True),
+                "url": st.column_config.LinkColumn("お店のURL", validate="^https?://", required=True),
+                "id": st.column_config.TextColumn("ID", disabled=True),
+                
+                # ▼▼▼ 追加：評価項目（スライダー項目）の設定 ▼▼▼
+                "total": st.column_config.NumberColumn("満足度", min_value=0, max_value=5, step=1),
+                "taste": st.column_config.NumberColumn("料理", min_value=0, max_value=5, step=1),
+                "service": st.column_config.NumberColumn("サービス", min_value=0, max_value=5, step=1),
+                "specialty": st.column_config.NumberColumn("特別感", min_value=0, max_value=5, step=1),
+                "cost_performance": st.column_config.NumberColumn("金額", min_value=1, max_value=5, step=1),
+                # ▲▲▲ ここまで ▲▲▲
+            }
+
             edited_df = st.data_editor(
                 df, 
                 num_rows="dynamic",
-                column_config={
-                    "order": st.column_config.NumberColumn("順序", step=1, required=True),
-                    "date": st.column_config.TextColumn("訪問日", required=True),
-                    "color": st.column_config.SelectboxColumn("カード色", options=APP_CONFIG["colors"], required=True),
-                    "genre": st.column_config.SelectboxColumn("ジャンル", options=APP_CONFIG["genres"], required=True),
-                    "url": st.column_config.LinkColumn("お店のURL", validate="^https?://", required=True),
-                    "id": st.column_config.TextColumn("ID", disabled=True)
-                },
+                column_config=my_column_config, # 作成した設定を適用
                 column_order=["order", "name", "genre", "color", "date", "url"] + [c["id"] for c in APP_CONFIG["criteria"]]
             )
             
