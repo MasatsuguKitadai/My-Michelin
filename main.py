@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+import time
 from datetime import datetime
 from github import Github
 
@@ -80,15 +81,26 @@ def load_data():
 
 def save_data(data):
     """
-    GitHub上のファイルを直接更新（commit）して保存する
+    ローカルとGitHubの両方を更新してデータを保存する
     """
-    # まずは並び替え
+    # 1. データの並び替え
     data = sorted(data, key=lambda x: x.get("order", 0))
     
-    # JSON文字列に変換（日本語対応）
+    # 2. JSON文字列を作成
     json_content = json.dumps(data, ensure_ascii=False, indent=4)
     
-    # --- GitHubへの書き込み処理 ---
+    # -------------------------------------------------
+    # A. ローカルファイルへの保存（画面への即時反映用）
+    # -------------------------------------------------
+    try:
+        with open(APP_CONFIG["save_file"], "w", encoding="utf-8") as f:
+            f.write(json_content)
+    except Exception as e:
+        st.error(f"ローカル保存エラー: {e}")
+
+    # -------------------------------------------------
+    # B. GitHubへの保存（データの恒久化用）
+    # -------------------------------------------------
     try:
         # 認証
         g = Github(st.secrets["GITHUB_TOKEN"])
@@ -98,42 +110,22 @@ def save_data(data):
         try:
             # 既存のファイルを取得（更新用）
             contents = repo.get_contents(file_path)
-            # ファイルを更新（コミットメッセージ: Update gourmet_data.json）
             repo.update_file(contents.path, "Update gourmet_data.json", json_content, contents.sha)
-            st.toast("☁️ GitHubにデータを保存しました！", icon="✅")
+            st.toast("☁️ クラウド(GitHub)に保存しました！", icon="✅")
             
-        except Exception as e:
+        except Exception:
             # ファイルがまだない場合は新規作成
             repo.create_file(file_path, "Create gourmet_data.json", json_content)
-            st.toast("☁️ GitHubに新規ファイルを作成しました！", icon="✅")
+            st.toast("☁️ 新規ファイルを作成しました！", icon="✅")
             
     except Exception as e:
-        st.error(f"保存に失敗しました: {e}")
-
-# # ==========================================
-# # 2. データ処理関数
-# # ==========================================
-# def load_data():
-#     if not os.path.exists(APP_CONFIG["save_file"]):
-#         return []
-#     with open(APP_CONFIG["save_file"], "r", encoding="utf-8") as f:
-#         data = json.load(f)
+        st.error(f"GitHub保存エラー: {e}")
         
-#     needs_save = False
-#     for i, item in enumerate(data):
-#         if "order" not in item:
-#             item["order"] = i + 1
-#             needs_save = True
-            
-#     if needs_save:
-#         save_data(data)
-        
-#     return sorted(data, key=lambda x: x.get("order", 0))
-
-# def save_data(data):
-#     data = sorted(data, key=lambda x: x.get("order", 0))
-#     with open(APP_CONFIG["save_file"], "w", encoding="utf-8") as f:
-#         json.dump(data, f, ensure_ascii=False, indent=4)
+    # -------------------------------------------------
+    # C. 通知を見せるための待機
+    # -------------------------------------------------
+    # これがないと、rerun()によって一瞬でメッセージが消えてしまいます
+    time.sleep(2)
 
 # ==========================================
 # 3. アプリのメイン処理
