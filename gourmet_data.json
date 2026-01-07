@@ -466,5 +466,23 @@
         "memo": "地下にある焼き鳥屋。おいしくて安い。飲み会におすすめ。",
         "order": 10009,
         "parking": "なし"
+    },
+    {
+        "id": "1767796546.039248",
+        "name": "中華そば高安",
+        "date": "2026-01-07",
+        "genre": "ラーメン",
+        "url": "https://maps.app.goo.gl/N6zd5KhDo9muCBBf8",
+        "color": "Normal",
+        "order": 10010,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 0,
+        "cost_performance": 1,
+        "location": "京都市 一乗寺",
+        "atmosphere": "入りやすい",
+        "parking": "なし",
+        "memo": "食べログの百名店にも選ばれているお店。豚骨ラーメン。結構大きい唐揚げも有名で、食べきれなかった分は持ち帰りもできる。店内のテレビではトムとジェリーが流れている。"
     }
 ]
