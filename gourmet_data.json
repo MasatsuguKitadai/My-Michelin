@@ -502,5 +502,23 @@
         "atmosphere": "入りやすい",
         "parking": "なし",
         "memo": "一乗寺で最もドロドロの濃厚豚骨ラーメン。学生の頃は好きでよく友達と食べに行った。今はちょっとしんどいかも。"
+    },
+    {
+        "id": "1767796960.03736",
+        "name": "天下一品 総本店",
+        "date": "2026-01-07",
+        "genre": "ラーメン",
+        "url": "https://maps.app.goo.gl/r8qs1WsdnsEuGiVt9",
+        "color": "Bronze",
+        "order": 10012,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 0,
+        "cost_performance": 1,
+        "location": "京都市 北白川",
+        "atmosphere": "入りやすい",
+        "parking": "あり",
+        "memo": "有名全国チェーンの本店。休日は行列ができている。お店も年季が入っていて雰囲気がある。気持ちちょっとおいしい。"
     }
 ]
