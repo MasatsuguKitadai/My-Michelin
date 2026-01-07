@@ -484,5 +484,23 @@
         "atmosphere": "入りやすい",
         "parking": "なし",
         "memo": "食べログの百名店にも選ばれているお店。豚骨ラーメン。結構大きい唐揚げも有名で、食べきれなかった分は持ち帰りもできる。店内のテレビではトムとジェリーが流れている。"
+    },
+    {
+        "id": "1767796718.752827",
+        "name": "濃厚らーめん 驚麺屋",
+        "date": "2026-01-07",
+        "genre": "ラーメン",
+        "url": "https://maps.app.goo.gl/rcPqUk24USu44FQD6",
+        "color": "Normal",
+        "order": 10011,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 0,
+        "cost_performance": 1,
+        "location": "京都市 一乗寺",
+        "atmosphere": "入りやすい",
+        "parking": "なし",
+        "memo": "一乗寺で最もドロドロの濃厚豚骨ラーメン。学生の頃は好きでよく友達と食べに行った。今はちょっとしんどいかも。"
     }
 ]
