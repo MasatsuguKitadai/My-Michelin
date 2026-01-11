@@ -574,5 +574,23 @@
         "memo": "四条河原町を少し南に下ったところにあるカフェ。鴨川を見て一息つける。京都らしさ満点の店内の雰囲気がとても良い。デートや友達と行くのがおすすめ。",
         "order": 10014,
         "parking": "なし"
+    },
+    {
+        "id": "1768108598.755921",
+        "name": "喫茶リッチ",
+        "date": "2026-01-11",
+        "genre": "カフェ",
+        "url": "https://maps.app.goo.gl/TbdvFTYEBZveLS5W8?g_st=ic",
+        "color": "Normal",
+        "order": 10015,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 0,
+        "cost_performance": 1,
+        "location": "名古屋市",
+        "atmosphere": "静か",
+        "parking": "あり",
+        "memo": ""
     }
 ]
