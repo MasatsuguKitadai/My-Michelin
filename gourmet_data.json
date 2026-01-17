@@ -387,7 +387,7 @@
         "color": "Normal",
         "total": 1,
         "taste": 1,
-        "service": 1,
+        "service": 0,
         "specialty": 0,
         "cost_performance": 1,
         "atmosphere": "入りやすい",
