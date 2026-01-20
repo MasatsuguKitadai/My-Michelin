@@ -185,7 +185,7 @@
 .card-container {
   display: grid;
   /* 最小300pxのカードを画面幅いっぱいに敷き詰める（自動折り返し） */
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 20px; /* カード間の隙間 */
   padding: 10px 0;
   width: 100%;
