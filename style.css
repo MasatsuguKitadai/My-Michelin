@@ -176,3 +176,26 @@
   opacity: 0.5;
   font-size: 0.9em;
 }
+
+/* =========================================
+   レスポンシブ・グリッドレイアウト設定
+   ========================================= */
+
+/* カード全体を囲むコンテナ */
+.card-container {
+  display: grid;
+  /* 最小300pxのカードを画面幅いっぱいに敷き詰める（自動折り返し） */
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px; /* カード間の隙間 */
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* 個別のカード設定（グリッド内で崩れないように調整） */
+.flip-card {
+  background-color: transparent;
+  width: 100%; /* コンテナ幅に合わせる */
+  height: 320px; /* カードの高さを統一 */
+  perspective: 1000px;
+  margin: 0; /* 余白はgrid-gapで管理するので0にする */
+}
