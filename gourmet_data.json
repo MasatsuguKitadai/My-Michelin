@@ -628,5 +628,23 @@
         "atmosphere": "賑やか",
         "parking": "なし",
         "memo": "酒店というだけあって、お酒も多い。海鮮が美味しい。値段はそこそこ。また行きたい。"
+    },
+    {
+        "id": "1769258338.026445",
+        "name": "Banshoji bar",
+        "date": "2026-01-24",
+        "genre": "カフェ",
+        "url": "https://maps.app.goo.gl/joxrYL1JTRwSPug69?g_st=ipc",
+        "color": "Bronze",
+        "order": 10018,
+        "total": 2,
+        "taste": 1,
+        "service": 1,
+        "specialty": 1,
+        "cost_performance": 2,
+        "location": "名古屋市 大須",
+        "atmosphere": "デート向き",
+        "parking": "なし",
+        "memo": "万松寺ビルの7階にあるバー。入り口はわかりにくい。隠れ家的でお客さんも少ない。景色は良いようでそんなによくない。カジュアルで入りやすい。本日のフレッシュフルーツカクテルがおすすめ。"
     }
 ]
