@@ -360,6 +360,24 @@
         "parking": "なし"
     },
     {
+        "id": "1769923543.125757",
+        "name": "大衆飯酒場 ワイロ",
+        "location": "名古屋市 栄",
+        "date": "2026-01-31",
+        "url": "https://maps.app.goo.gl/8FACTVqy3pPe5oCo8?g_st=ic",
+        "genre": "居酒屋",
+        "color": "Bronze",
+        "total": 1,
+        "taste": 2,
+        "service": 1,
+        "specialty": 1,
+        "cost_performance": 2,
+        "atmosphere": "賑やか",
+        "memo": "中華居酒屋。お料理は見た目も良くて美味しい。青島ビールがある。バイスサワーも美味しい。ゴッド酒場とそのだを足した感じ。",
+        "order": 1010,
+        "parking": "なし"
+    },
+    {
         "id": "1767255515.507836",
         "name": "ごま麺",
         "location": "春日井市",
@@ -646,23 +664,5 @@
         "memo": "酒店というだけあって、お酒も多い。海鮮が美味しい。値段はそこそこ。また行きたい。",
         "order": 10017,
         "parking": "なし"
-    },
-    {
-        "id": "1769923543.125757",
-        "name": "大衆飯酒場 ワイロ",
-        "date": "2026-02-01",
-        "genre": "居酒屋",
-        "url": "https://maps.app.goo.gl/8FACTVqy3pPe5oCo8?g_st=ic",
-        "color": "Bronze",
-        "order": 10018,
-        "total": 1,
-        "taste": 2,
-        "service": 1,
-        "specialty": 1,
-        "cost_performance": 2,
-        "location": "名古屋市 栄",
-        "atmosphere": "賑やか",
-        "parking": "なし",
-        "memo": "中華居酒屋。お料理は見た目も良くて美味しい。青島ビールがある。バイスサワーも美味しい。ゴッド酒場とそのだを足した感じ。"
     }
 ]
