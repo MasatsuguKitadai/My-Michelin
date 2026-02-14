@@ -668,19 +668,19 @@
     {
         "id": "1771079863.610924",
         "name": "月島もんじゃ おこげ",
-        "date": "2026-02-14",
-        "genre": "居酒屋",
+        "location": "名古屋市栄",
+        "date": "",
         "url": "https://maps.app.goo.gl/CDTmBu8tFzdMNA2S6?g_st=ic",
+        "genre": "居酒屋",
         "color": "Normal",
-        "order": 10019,
         "total": 1,
         "taste": 1,
         "service": 1,
         "specialty": 1,
         "cost_performance": 2,
-        "location": "名古屋市栄",
         "atmosphere": "入りやすい",
-        "parking": "なし",
-        "memo": "朝4時までやってるお店。\n店内もきれいで料理も美味しい。"
+        "memo": "朝4時までやってるお店。\n店内もきれいで料理も美味しい。",
+        "order": 10019,
+        "parking": "なし"
     }
 ]
