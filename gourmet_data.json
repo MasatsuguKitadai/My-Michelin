@@ -664,5 +664,23 @@
         "memo": "万松寺ビルの7階にあるバー。入り口はわかりにくい。隠れ家的でお客さんも少ない。景色は良いようでそんなによくない。カジュアルで入りやすい。本日のフレッシュフルーツカクテルがおすすめ。",
         "order": 10018,
         "parking": "なし"
+    },
+    {
+        "id": "1771079863.610924",
+        "name": "月島もんじゃ おこげ",
+        "date": "2026-02-14",
+        "genre": "居酒屋",
+        "url": "https://maps.app.goo.gl/CDTmBu8tFzdMNA2S6?g_st=ic",
+        "color": "Normal",
+        "order": 10019,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 1,
+        "cost_performance": 2,
+        "location": "名古屋市栄",
+        "atmosphere": "入りやすい",
+        "parking": "なし",
+        "memo": "朝4時までやってるお店。\n店内もきれいで料理も美味しい。"
     }
 ]
