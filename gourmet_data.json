@@ -700,5 +700,23 @@
         "memo": "朝4時までやってるお店。\n店内もきれいで料理も美味しい。",
         "order": 10019,
         "parking": "なし"
+    },
+    {
+        "id": "1771822985.702983",
+        "name": "中華そば 朧月",
+        "date": "2026-02-22",
+        "genre": "ラーメン",
+        "url": "https://maps.app.goo.gl/WibSCMakibjfTdwWA?g_st=ic",
+        "color": "Normal",
+        "order": 10020,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 0,
+        "cost_performance": 1,
+        "location": "名古屋市金山",
+        "atmosphere": "入りやすい",
+        "parking": "なし",
+        "memo": ""
     }
 ]
