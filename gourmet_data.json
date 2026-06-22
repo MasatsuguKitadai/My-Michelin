@@ -754,5 +754,23 @@
         "atmosphere": "デート向き",
         "parking": "なし",
         "memo": "３年記念に利用。料理もサービスも雰囲気もとても良い。子供も来れるし、適度にカジュアルなので利用しやすい。ぜひまた行きたい。"
+    },
+    {
+        "id": "1782169365.007066",
+        "name": "レストラン KEI",
+        "date": "2026-06-20",
+        "genre": "フレンチ",
+        "url": "https://maps.app.goo.gl/Tx29jd35FenCiabY7?g_st=ic",
+        "color": "Gold",
+        "order": 10022,
+        "total": 4,
+        "taste": 4,
+        "service": 3,
+        "specialty": 4,
+        "cost_performance": 4,
+        "location": "豊橋市 豊橋駅",
+        "atmosphere": "静か",
+        "parking": "なし",
+        "memo": "誕生日に予約してくれた。豊橋駅のホテルの最上階にあるお店。王道のフレンチで、料理がとても華やか。ジャケットは着ていったほうが良さそう。"
     }
 ]
