@@ -776,19 +776,19 @@
     {
         "id": "1787665674.934033",
         "name": "ゆうなんぎい 名古屋鶴舞",
+        "location": "名古屋市 鶴舞",
         "date": "2026-08-25",
-        "genre": "和食",
         "url": "https://maps.app.goo.gl/v1BbBtdEBbucHaKE9?g_st=ic",
+        "genre": "和食",
         "color": "Normal",
-        "order": 10021,
         "total": 2,
         "taste": 1,
-        "service": 0,
+        "service": 1,
         "specialty": 1,
         "cost_performance": 2,
-        "location": "名古屋市 鶴舞",
         "atmosphere": "賑やか",
-        "parking": "なし",
-        "memo": "本格的な沖縄料理を名古屋で食べられる。ソーキそばが美味しかった。疲れた身体に出汁が染みる。雰囲気も良くて、飲み会でも楽しそう。"
+        "memo": "本格的な沖縄料理を名古屋で食べられる。ソーキそばが美味しかった。疲れた身体に出汁が染みる。雰囲気も良くて、飲み会でも楽しそう。",
+        "order": 10021,
+        "parking": "なし"
     }
 ]
