@@ -790,5 +790,23 @@
         "memo": "本格的な沖縄料理を名古屋で食べられる。ソーキそばが美味しかった。疲れた身体に出汁が染みる。雰囲気も良くて、飲み会でも楽しそう。",
         "order": 10021,
         "parking": "なし"
+    },
+    {
+        "id": "1788132976.336608",
+        "name": "楚々",
+        "date": "2026-08-28",
+        "genre": "居酒屋",
+        "url": "https://maps.app.goo.gl/PnFHvkCnKPrDESkf6?g_st=ic",
+        "color": "Normal",
+        "order": 10022,
+        "total": 1,
+        "taste": 1,
+        "service": 1,
+        "specialty": 1,
+        "cost_performance": 1,
+        "location": "名古屋市 上前津",
+        "atmosphere": "賑やか",
+        "parking": "なし",
+        "memo": "串しゃぶのお店。雰囲気はとても良い。女子会向きのおしゃれ居酒屋。"
     }
 ]
