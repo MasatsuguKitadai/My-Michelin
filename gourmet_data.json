@@ -126,24 +126,6 @@
         "parking": "なし"
     },
     {
-        "id": "1767278405.346049",
-        "name": "麺屋 極鶏 一乗寺本店",
-        "location": "京都市 一乗寺",
-        "date": "ー",
-        "url": "https://maps.app.goo.gl/sDjxcwj3e9RkbJC77",
-        "genre": "ラーメン",
-        "color": "Bronze",
-        "total": 3,
-        "taste": 3,
-        "service": 1,
-        "specialty": 0,
-        "cost_performance": 1,
-        "atmosphere": "入りやすい",
-        "memo": "京都の人気店。基本は行列。スープがなくなって早く閉めることも多い。ドロドロの鳥白湯で好き嫌いは分かれる。",
-        "order": 101,
-        "parking": "なし"
-    },
-    {
         "id": "176727760631939",
         "name": "都乃だんご みよし",
         "location": "京都市 祇園",
@@ -429,6 +411,24 @@
         "atmosphere": "デート向き",
         "memo": "和食テイストの居酒屋。原始焼き、土鍋ご飯もある。季節のフルーツとマスカルポーネチーズの料理は衝撃的な美味さだった。",
         "order": 1011,
+        "parking": "なし"
+    },
+    {
+        "id": "1767278405.346049",
+        "name": "麺屋 極鶏 一乗寺本店",
+        "location": "京都市 一乗寺",
+        "date": "ー",
+        "url": "https://maps.app.goo.gl/sDjxcwj3e9RkbJC77",
+        "genre": "ラーメン",
+        "color": "Bronze",
+        "total": 3,
+        "taste": 3,
+        "service": 1,
+        "specialty": 0,
+        "cost_performance": 1,
+        "atmosphere": "入りやすい",
+        "memo": "京都の人気店。基本は行列。スープがなくなって早く閉めることも多い。ドロドロの鳥白湯で好き嫌いは分かれる。",
+        "order": 1012,
         "parking": "なし"
     },
     {
