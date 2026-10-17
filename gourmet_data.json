@@ -216,6 +216,24 @@
         "parking": "なし"
     },
     {
+        "id": "1792127003.690201",
+        "name": "海蛇食堂",
+        "location": "名古屋市 鶴舞",
+        "date": "2026-09-19",
+        "url": "〒460-0012 Aichi, Nagoya, Naka Ward, Chiyoda, 3 Chome−31−6 サンメゾン千代田 101",
+        "genre": "和食",
+        "color": "Silver",
+        "total": 2,
+        "taste": 2,
+        "service": 1,
+        "specialty": 2,
+        "cost_performance": 3,
+        "atmosphere": "デート向き",
+        "memo": "住宅街にある落ち着いた雰囲気のレストラン。季節の食材を使ったコースで、ステーキと塩をつけて食べるチーズケーキがとてもおいしかった。",
+        "order": 107,
+        "parking": "なし"
+    },
+    {
         "id": "176727740579194",
         "name": "ごはんや 一芯 京都",
         "location": "京都市 河原町",
@@ -808,23 +826,5 @@
         "memo": "串しゃぶのお店。雰囲気はとても良い。女子会向きのおしゃれ居酒屋。",
         "order": 10022,
         "parking": "なし"
-    },
-    {
-        "id": "1792127003.690201",
-        "name": "海蛇食堂",
-        "date": "2026-09-19",
-        "genre": "和食",
-        "url": "〒460-0012 Aichi, Nagoya, Naka Ward, Chiyoda, 3 Chome−31−6 サンメゾン千代田 101",
-        "color": "Silver",
-        "order": 10023,
-        "total": 2,
-        "taste": 2,
-        "service": 1,
-        "specialty": 2,
-        "cost_performance": 3,
-        "location": "名古屋市 鶴舞",
-        "atmosphere": "デート向き",
-        "parking": "なし",
-        "memo": "住宅街にある落ち着いた雰囲気のレストラン。季節の食材を使ったコースで、ステーキと塩をつけて食べるチーズケーキがとてもおいしかった。"
     }
 ]
